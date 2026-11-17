@@ -1,0 +1,7 @@
+# Значения для запуска API в контейнере.
+[server]
+host = "0.0.0.0"
+port = 8000
+
+[cors]
+allowed_origins = ["http://localhost:5173"]
