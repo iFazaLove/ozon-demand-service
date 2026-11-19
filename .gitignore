@@ -79,6 +79,10 @@ docs/_build/
 .pybuilder/
 target/
 
+# Repo2md files
+.repo2md.toml
+project-context.md
+
 # Jupyter Notebook
 .ipynb_checkpoints
 

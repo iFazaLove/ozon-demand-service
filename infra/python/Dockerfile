@@ -11,12 +11,12 @@ COPY .python-version pyproject.toml uv.lock README.md ./
 COPY src/ ./src/
 
 FROM base AS checks
-RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked --no-editable
+RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked --no-default-groups --group dev --no-editable
 ENV PATH="/opt/ozon-venv/bin:$PATH"
 CMD ["sh", "-ec", "ruff check --no-cache src && ruff format --check --no-cache src"]
 
 FROM base AS runtime-install
-RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked --no-dev --no-editable
+RUN --mount=type=cache,target=/root/.cache/uv uv sync --locked --no-default-groups --no-editable
 
 FROM python:3.12-slim AS runtime
 COPY --from=runtime-install /opt/ozon-venv /opt/ozon-venv
